@@ -1,4 +1,4 @@
-# Задача на реализацию функционала синхронизации файлов из source to destination
+# Задача на реализацию функциональности синхронизации файлов из source to destination
 
 ## Термины
 
@@ -28,6 +28,37 @@
 
 Всё остальное можно реализовать через встроенные модули python.
 
-### Функция хеширования
+### Пример структуры директории **source** и **destination**
 
-Функция для подсчета sha1 контента уже реализована в модуле pysync.helpers.hash_buffer
+**source**:
+
+```
+/src
+├── awesome.img
+├── executer
+├── file1.txt
+├── file2.log
+└── report.pdf
+```
+
+**destination**:
+
+```
+/dst
+├── executer
+├── file2.log
+├── file33.txt
+└── veryOld.so
+```
+
+В результате работы должны произойти следующие действия:
+
+```
+COPY     /src/awesome.img  /dst/awesome.img
+COPY     /src/file1.txt    /dst/file1.txt
+COPY     /src/report.pdf   /dst/report.pdf
+
+DELETE   /dst/veryOld.so
+
+MOVE     /dst/file33.txt   /dst/file2.txt
+```
